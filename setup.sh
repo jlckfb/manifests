@@ -3,7 +3,7 @@
 ###############################################################################
 # TaishanPi-3 SDK One-Click Install Script
 # For: Ubuntu 22.04 LTS (Jammy Jellyfish)
-# Usage: curl -fsSL https://raw.githubusercontent.com/jlckfb/TaishanPi-manifests/main/install.sh | bash -s -- -b linux/tspi-3-260402
+# Usage: curl -fsSL https://wiki.lckfb.com/storage/scripts/TaishanPi-manifests/install | bash -s -- -b linux/tspi-3-260402 -m gitee
 # Note: Run as normal user. Script uses sudo internally for privileged ops.
 ###############################################################################
 
@@ -193,7 +193,7 @@ SDK_DIR="$PWD/TaishanPi-3-Linux"
 STORAGE_WARNING=""
 
 MANIFEST_BRANCH="linux/tspi-3-260402"
-MANIFEST_URL="https://github.com/jlckfb/TaishanPi-manifests.git"
+MANIFEST_URL="${TSPI_MANIFEST_URL:-https://github.com/jlckfb/TaishanPi-manifests.git}"
 REPO_DOWNLOAD_URL="https://cnb.cool/jlckfb/git-repo/-/git/raw/main/repo"
 
 
@@ -721,6 +721,7 @@ BASHRC_EOF
 
 clone_sdk() {
     log_step "Cloning TaishanPi-3 SDK"
+    log_debug "Manifest source: ${TSPI_MANIFEST_SOURCE:-default} -> $MANIFEST_URL"
     echo ""
     SDK_DIR="$(realpath "$PWD/TaishanPi-3-Linux")"
     mkdir -p "$SDK_DIR"
