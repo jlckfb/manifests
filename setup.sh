@@ -3,7 +3,7 @@
 ###############################################################################
 # TaishanPi-3 Android14 SDK One-Click Install Script
 # For: Ubuntu 22.04 LTS (Jammy Jellyfish)
-# Usage: curl -fsSL <URL>/install.sh | bash -s -- -b android14/tspi-3-260416
+# Usage: curl -fsSL https://wiki.lckfb.com/storage/scripts/TaishanPi-manifests/install | bash -s -- -b android14/tspi-3-260416 -m gitee
 # Note: Run as normal user. Script uses sudo internally for privileged ops.
 ###############################################################################
 
@@ -193,7 +193,7 @@ SDK_DIR="$PWD/TaishanPi-3-Android14"
 STORAGE_WARNING=""
 
 MANIFEST_BRANCH="android14/tspi-3-260416"
-MANIFEST_URL="https://github.com/jlckfb/TaishanPi-manifests.git"
+MANIFEST_URL="${TSPI_MANIFEST_URL:-https://github.com/jlckfb/TaishanPi-manifests.git}"
 REPO_DOWNLOAD_URL="https://cnb.cool/jlckfb/git-repo/-/git/raw/main/repo"
 
 detect_region() {
@@ -719,6 +719,7 @@ BASHRC_EOF
 
 clone_sdk() {
     log_step "Cloning TaishanPi-3 SDK"
+    log_debug "Manifest source: ${TSPI_MANIFEST_SOURCE:-default} -> $MANIFEST_URL"
     echo ""
     SDK_DIR="$(realpath "$PWD/TaishanPi-3-Android14")"
     mkdir -p "$SDK_DIR"
