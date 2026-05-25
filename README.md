@@ -15,23 +15,17 @@
 
 ### TaishanPi-3 (RK3576)
 
-**One-Click Install** - Automatically sets up build environment and downloads SDK.
-
-> Choose `-m gitee` for China network, `-m github` for international network.
+**One-Click Install** - Automatically sets up build environment and downloads SDK:
 
 ```bash
-# Linux SDK (Buildroot/Debian/Ubuntu) — China users
-curl -fsSL https://wiki.lckfb.com/storage/scripts/TaishanPi-manifests/install | bash -s -- -b linux/tspi-3-260402 -m gitee
-
-# Linux SDK — International users
+# Linux SDK (Buildroot/Debian/Ubuntu)
 curl -fsSL https://wiki.lckfb.com/storage/scripts/TaishanPi-manifests/install | bash -s -- -b linux/tspi-3-260402 -m github
 
-# Android 14 SDK — China users
-curl -fsSL https://wiki.lckfb.com/storage/scripts/TaishanPi-manifests/install | bash -s -- -b android14/tspi-3-260416 -m gitee
-
-# Android 14 SDK — International users
+# Android 14 SDK
 curl -fsSL https://wiki.lckfb.com/storage/scripts/TaishanPi-manifests/install | bash -s -- -b android14/tspi-3-260416 -m github
 ```
+
+> 中国用户网络访问 GitHub 不稳定时，将 `-m github` 替换为 `-m gitee` 即可走 Gitee 镜像。
 
 ---
 
@@ -83,26 +77,18 @@ export REPO_REV="main"
 **Linux SDK:**
 ```bash
 mkdir -p ~/TaishanPi-3-Linux && cd ~/TaishanPi-3-Linux
-
-# China users
-repo init -u https://gitee.com/taishanpi/TaishanPi-manifests.git -b linux/tspi-3-260402 --depth=1 --no-clone-bundle
-# International users
 repo init -u https://github.com/jlckfb/TaishanPi-manifests.git -b linux/tspi-3-260402 --depth=1 --no-clone-bundle
-
 repo sync -c --no-clone-bundle -j$(nproc)
 ```
 
 **Android 14 SDK:**
 ```bash
 mkdir -p ~/TaishanPi-3-Android14 && cd ~/TaishanPi-3-Android14
-
-# China users
-repo init -u https://gitee.com/taishanpi/TaishanPi-manifests.git -b android14/tspi-3-260416 --depth=1 --no-clone-bundle
-# International users
 repo init -u https://github.com/jlckfb/TaishanPi-manifests.git -b android14/tspi-3-260416 --depth=1 --no-clone-bundle
-
 repo sync -c --no-clone-bundle -j$(nproc)
 ```
+
+> 中国用户可将 `repo init -u` 后的 URL 替换为 `https://gitee.com/taishanpi/TaishanPi-manifests.git`。
 
 ### 3. Fetch LFS files (if needed)
 
