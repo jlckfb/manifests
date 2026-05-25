@@ -15,14 +15,22 @@
 
 ### TaishanPi-3 (RK3576)
 
-**One-Click Install** - Automatically sets up build environment and downloads SDK:
+**One-Click Install** - Automatically sets up build environment and downloads SDK.
+
+> Choose `-m gitee` for China network, `-m github` for international network.
 
 ```bash
-# Linux SDK (Buildroot/Debian/Ubuntu)
-curl -fsSL https://raw.githubusercontent.com/jlckfb/TaishanPi-manifests/main/install.sh | bash -s -- -b linux/tspi-3-260402
+# Linux SDK (Buildroot/Debian/Ubuntu) — China users
+curl -fsSL https://wiki.lckfb.com/storage/scripts/TaishanPi-manifests/install | bash -s -- -b linux/tspi-3-260402 -m gitee
 
-# Android 14 SDK
-curl -fsSL https://raw.githubusercontent.com/jlckfb/TaishanPi-manifests/main/install.sh | bash -s -- -b android14/tspi-3-260416
+# Linux SDK — International users
+curl -fsSL https://wiki.lckfb.com/storage/scripts/TaishanPi-manifests/install | bash -s -- -b linux/tspi-3-260402 -m github
+
+# Android 14 SDK — China users
+curl -fsSL https://wiki.lckfb.com/storage/scripts/TaishanPi-manifests/install | bash -s -- -b android14/tspi-3-260416 -m gitee
+
+# Android 14 SDK — International users
+curl -fsSL https://wiki.lckfb.com/storage/scripts/TaishanPi-manifests/install | bash -s -- -b android14/tspi-3-260416 -m github
 ```
 
 ---
@@ -75,14 +83,24 @@ export REPO_REV="main"
 **Linux SDK:**
 ```bash
 mkdir -p ~/TaishanPi-3-Linux && cd ~/TaishanPi-3-Linux
+
+# China users
+repo init -u https://gitee.com/taishanpi/TaishanPi-manifests.git -b linux/tspi-3-260402 --depth=1 --no-clone-bundle
+# International users
 repo init -u https://github.com/jlckfb/TaishanPi-manifests.git -b linux/tspi-3-260402 --depth=1 --no-clone-bundle
+
 repo sync -c --no-clone-bundle -j$(nproc)
 ```
 
 **Android 14 SDK:**
 ```bash
 mkdir -p ~/TaishanPi-3-Android14 && cd ~/TaishanPi-3-Android14
+
+# China users
+repo init -u https://gitee.com/taishanpi/TaishanPi-manifests.git -b android14/tspi-3-260416 --depth=1 --no-clone-bundle
+# International users
 repo init -u https://github.com/jlckfb/TaishanPi-manifests.git -b android14/tspi-3-260416 --depth=1 --no-clone-bundle
+
 repo sync -c --no-clone-bundle -j$(nproc)
 ```
 
